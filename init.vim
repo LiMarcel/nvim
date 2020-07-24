@@ -22,6 +22,10 @@ filetype plugin indent on
 " set mouse=a
 set encoding=utf-8
 let &t_ut=''
+
+" ===
+" === Editor Behaviors
+" ===
 set expandtab
 set tabstop=4
 set shiftwidth=4
@@ -32,11 +36,14 @@ set scrolloff=5
 set tw=0
 set indentexpr=
 set backspace=indent,eol,start
+
 set foldmethod=indent
 set foldlevel=99
+
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
 set laststatus=2
 set autochdir
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -66,11 +73,15 @@ noremap O zzA
 noremap a o
 noremap A O
 
+" Duplicate words
+map <LEADER>fd /\(\<\w\+\>\)\_s*\l
+
 map s <nop>
 map S :w<CR>
 map Q :q<CR>
 map R :source $MYVIMRC<CR>
 map ; :
+
 
 map sl :set splitright<CR>:vsplit<CR>
 map sj :set nosplitright<CR>:vsplit<CR>
@@ -93,6 +104,20 @@ map tl :+tabnext<CR>
 
 map sv <C-w>t<C-w>H
 map sh <C-w>t<C-w>K
+
+" Spelling check
+map <LEADER>sc :set spell!<CR>
+noremap <C-x> ea<C-x>s
+inoremap <C-x> <Esc>ea<C-x>s
+
+" ===
+" === Open init.vim quickly
+" ===
+noremap IN :e ~/.config/nvim/init.vim<CR>
+noremap PF :e ~/桌面/Personal Files/Ubuntu Download/Ubuntu Download.md<CR>
+
+" Press space twice to jump to the next '<++>' and edit it
+map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4i
 
 call plug#begin('~/.config/nvim/plugged')
 
